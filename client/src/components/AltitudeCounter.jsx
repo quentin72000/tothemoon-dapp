@@ -1,11 +1,11 @@
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useAccount, useReadContract } from "wagmi"
 import { rocketContractConfig } from "../datas/contractConfig"
 import wagmiConfig from '../datas/wagmiConfig';
 
 
-export default function AltitudeCounter({altitudeBis}){
+export default function AltitudeCounter(){
 
     const { data: altitude, error, isPending} = useReadContract({
         ...rocketContractConfig,
@@ -22,11 +22,15 @@ export default function AltitudeCounter({altitudeBis}){
           Error: {(error).shortMessage || error.message}
         </div>
       )
+      console.log(altitude)
+      if(altitude === 0n){
+        return <p>Rocket has not lift-off yet.</p>
+      }else {
+        return <p>Rocket is at {altitude.toLocaleString()}km!</p> 
+      }
+    
+    }
 
-
-    return <p>Rocket is at {altitude.toLocaleString()}km!</p> 
-}
-
-AltitudeCounter.propTypes = {
-    altitude: PropTypes.number.isRequired
-};
+// AltitudeCounter.propTypes = {
+//     altitude: PropTypes.number.isRequired
+// };

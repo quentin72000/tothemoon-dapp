@@ -7,14 +7,14 @@ import { useState } from "react";
 
 
 export default function RocketTab() {
-    const [altitude, setAltitude] = useState(0)
+    const [selectedFuelAmount, setSelectedFuelAmount] = useState(1)
 
   return (
     <div>
-      <AltitudeCounter altitude={altitude} />
-      <img src={rocketImage} alt="" onClick={() => setAltitude(altitude + 1)} width="200px" />
+      <AltitudeCounter/>
+      <img src={rocketImage} className="rocket" width="200px" />
       <Profile />
-      <FuelSelector />
+      <FuelSelector selected={selectedFuelAmount} setSelected={setSelectedFuelAmount}/>
     </div>
   );
 }

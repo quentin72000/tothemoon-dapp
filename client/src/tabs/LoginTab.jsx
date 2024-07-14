@@ -9,7 +9,7 @@ export default function LoginPage() {
             </h3>
             <p>The rocket to go to the moon can&apos;t drive by herself ! Complete quests to get fuel token and feed the engine NOW !</p>
             <p>Connect your wallet now to get started :</p>
-            <div className="connectButton"><ConnectButton /></div>
+            <div className="connectButton"><ConnectButton/></div>
         </div>
     </div>
   )

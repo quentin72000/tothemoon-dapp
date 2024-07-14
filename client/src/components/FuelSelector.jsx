@@ -1,10 +1,7 @@
-import { useState } from "react"
+import PropTypes from 'prop-types';
 
-export default function FuelSelector() {
+export default function FuelSelector({selected, setSelected}) {
     const options = [1, 10, 100]
-
-    const [selected, setSelected] = useState(1)
-
 
     return (
         <div>
@@ -13,7 +10,7 @@ export default function FuelSelector() {
                     options.map((e) => {
                         return <div key={e}> 
                             <label htmlFor={e}>{e}</label>
-                            <input type="radio" name="fuelselector" id={e} onClick={() => setSelected(e)} />
+                            <input type="radio" name="fuelselector" id={e} onClick={() => setSelected(e)} checked={e === selected} />
                         </div>
                     })
                 }
@@ -22,3 +19,8 @@ export default function FuelSelector() {
         </div>
     )
 }
+
+FuelSelector.propTypes = {
+    selected: PropTypes.number.isRequired,
+    setSelected: PropTypes.func.isRequired
+};

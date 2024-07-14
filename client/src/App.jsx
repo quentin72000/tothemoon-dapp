@@ -5,8 +5,8 @@ import { useState } from "react"
 
 import NavBar from "./components/NavBar"
 import RocketTab from "./tabs/RocketTab"
-import LoginPage from "./tabs/LoginPage"
-import { useAccount } from "wagmi"
+import LoginTab from "./tabs/LoginTab"
+import { useAccount, /*useAccountEffect*/ } from "wagmi"
 import wagmiConfig from "./datas/wagmiConfig"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
@@ -22,14 +22,21 @@ export default function App() {
                 return <RocketTab/>
             case 3:
                 return <div>Quests: SOON</div>
-        
+            case 4:
+                return <div>Admin Page : Restricted (SOON)</div>
             default:
-                break;
+                return <RocketTab/>;
         }
     }
 
+    // Old way to check account status
+    // useAccountEffect({
+    //     config: wagmiConfig,
+    //     onConnect: () => setConnected(true),
+    //     onDisconnect: () => setConnected(false)
+    // })
+
     const { isConnected } = useAccount(wagmiConfig);
-    console.log(isConnected)
 
   
   
@@ -38,7 +45,7 @@ export default function App() {
             <Header/>
 
             <NavBar onClick={(tabId) => setTabId(tabId)}/>
-            { !isConnected ? <LoginPage/> : renderTab()}
+            { !isConnected ? <LoginTab/> : renderTab()}
             <Footer/>
         </>
   )

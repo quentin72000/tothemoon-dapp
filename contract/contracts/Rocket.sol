@@ -33,7 +33,7 @@ contract Rocket{
 
     function giveFuel(uint256 fuelAmount) public {
         require(currentAltitude < goal, "Rocket has landed.");
-        require(fuelAmount > 10**18, "Min is 1.");
+        require(fuelAmount >= 10**18, "Min is 1.");
         uint256 distance = (fuelAmount / 10**18) * distancePerFuel;
         require(currentAltitude + distance <= goal, "Too much to land.");
         require(fuelToken.balanceOf(msg.sender) >= fuelAmount, "Not enough fuel token.");

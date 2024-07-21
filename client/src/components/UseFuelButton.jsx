@@ -1,18 +1,16 @@
-import rocketImage from "../assets/rocket.png"
+import { useState, useEffect, useCallback } from "react";
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi"
-import { ethers } from "ethers";
 
+import { ethers } from "ethers";
 import wagmiConfig from "../datas/wagmiConfig"
 import { fuelTokenContractConfig, rocketContractConfig } from "../datas/contractConfig"
-
+import rocketImage from "../assets/rocket.png"
 import { toast } from "react-hot-toast"
 
-
 import PropTypes from 'prop-types';
-import { useState, useEffect, useCallback } from "react";
+
 
 export default function UseFuelButton({ selectedFuelAmount }) {
-
   const [isLoading, setIsLoading] = useState(false)
   const { address } = useAccount(wagmiConfig);
 
@@ -24,10 +22,10 @@ export default function UseFuelButton({ selectedFuelAmount }) {
 
 
   // Configurer et écrire l'approbation
-  const { writeContract: approve, data: approveData, isError: isApproveError, error: errorApprove, isPending: isApprovePending/*, reset */  } = useWriteContract();
+  const { writeContract: approve, data: approveData, isError: isApproveError, error: errorApprove, isPending: isApprovePending/*, reset */ } = useWriteContract();
 
   // Suivre la transaction d'approbation
-  const { isLoading: isApproveLoading, isSuccess: isApproveSuccess  } = useWaitForTransactionReceipt({
+  const { isLoading: isApproveLoading, isSuccess: isApproveSuccess } = useWaitForTransactionReceipt({
     hash: approveData
   });
 
@@ -39,7 +37,7 @@ export default function UseFuelButton({ selectedFuelAmount }) {
   });
 
   // Suivre la transaction du contrat cible
-  const { isLoading: isTargetFunctionLoading, isSuccess: isTargetFunctionSuccess } = useWaitForTransactionReceipt({
+  const { isLoading: isGiveFuelLoading, isSuccess: isGiveFuelSuccess } = useWaitForTransactionReceipt({
     hash: giveFuelData
   });
 
@@ -74,19 +72,19 @@ export default function UseFuelButton({ selectedFuelAmount }) {
 
   // Display a toast message when the target giveFuel function status changes
   useEffect(() => {
-    if (isTargetFunctionSuccess) {
+    if (isGiveFuelSuccess) {
       toast.success('Fuel has been used successfully!', {id: "fuel"});
       setIsLoading(false);
     }else if (isErrorGiveFuel){ 
       toast.error(`Error: ${errorGiveFuel.shortMessage}`, {id: "fuel"});
       console.error(errorGiveFuel);
       setIsLoading(false);
-    } else if (isTargetFunctionLoading) {
+    } else if (isGiveFuelLoading) {
       toast.loading('Executing...', {id: "fuel"});
     } else if(isGiveFuelPending){
       toast.loading('Waiting for transaction confirmation...', {id: "fuel"});
     }
-  }, [isTargetFunctionSuccess, isLoading, isErrorGiveFuel, errorGiveFuel, isTargetFunctionLoading, isGiveFuelPending]);
+  }, [isGiveFuelSuccess, isLoading, isErrorGiveFuel, errorGiveFuel, isGiveFuelLoading, isGiveFuelPending]);
 
   // Display a toast message when approval status changes
   useEffect(() => {
@@ -105,8 +103,8 @@ export default function UseFuelButton({ selectedFuelAmount }) {
 
   return (
     <div>
-      <input className="rocket" type="image" src={rocketImage} alt="" onClick={handleButtonClick} disabled={isLoading || isApproveLoading || isTargetFunctionLoading} width="200px"/>
-      <p>{isLoading || isApproveLoading || isTargetFunctionLoading ? 'Loading...' : 'Execute'}</p>
+      <input className="rocket" type="image" src={rocketImage} alt="" onClick={handleButtonClick} disabled={isLoading || isApproveLoading || isGiveFuelLoading} width="200px"/>
+      <p>{isLoading || isApproveLoading || isGiveFuelLoading ? 'Loading...' : 'Execute'}</p>
     </div>
   )
 }

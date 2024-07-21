@@ -1,12 +1,14 @@
 import { useAccount, useReadContract } from "wagmi"
-import wagmiConfig from "../datas/wagmiConfig"
 import { fuelTokenContractConfig } from "../datas/contractConfig"
 
+import wagmiConfig from "../datas/wagmiConfig"
+
 export default function FuelCounter() {
+    const { address } = useAccount(wagmiConfig);
     const { data, isPending } = useReadContract({
         ...fuelTokenContractConfig,
         functionName: "balanceOf",
-        args: [useAccount(wagmiConfig).address]
+        args: [address]
     })
     
     if(isPending){

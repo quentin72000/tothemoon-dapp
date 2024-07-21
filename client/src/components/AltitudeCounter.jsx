@@ -1,11 +1,8 @@
-
-// import PropTypes from 'prop-types';
 import { useReadContract, useBlockNumber } from "wagmi"
-import { rocketContractConfig } from "../datas/contractConfig"
-// import wagmiConfig from '../datas/wagmiConfig';
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
+import { rocketContractConfig } from "../datas/contractConfig"
 
 export default function AltitudeCounter(){
 
@@ -16,7 +13,6 @@ export default function AltitudeCounter(){
     const { data: altitude, error, isPending, queryKey } = useReadContract({
         ...rocketContractConfig,
         functionName: "currentAltitude",
-        // args: [useAccount(wagmiConfig).address]
     })
 
     useEffect(() => {
@@ -39,7 +35,3 @@ export default function AltitudeCounter(){
       }
     
     }
-
-// AltitudeCounter.propTypes = {
-//     altitude: PropTypes.number.isRequired
-// };

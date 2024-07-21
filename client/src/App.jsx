@@ -1,18 +1,25 @@
 
 import "./App.css"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useChainModal } from "@rainbow-me/rainbowkit"
+import { useAccount, /*useAccountEffect*/ } from "wagmi"
 
 import NavBar from "./components/NavBar"
 import RocketTab from "./tabs/RocketTab"
 import LoginTab from "./tabs/LoginTab"
-import { useAccount, /*useAccountEffect*/ } from "wagmi"
-import wagmiConfig from "./datas/wagmiConfig"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
+import { Toaster } from "react-hot-toast"
+
+import ternoaChain from "./datas/ternoaChain"
+import wagmiConfig from "./datas/wagmiConfig"
 
 export default function App() {
     const [tabId, setTabId] = useState(2)
+
+
+    const { openChainModal, chainModalOpen } = useChainModal();
 
     function renderTab(){
         switch (tabId) {
@@ -35,8 +42,17 @@ export default function App() {
     //     onConnect: () => setConnected(true),
     //     onDisconnect: () => setConnected(false)
     // })
-
+    
     const { isConnected } = useAccount(wagmiConfig);
+    const { chainId } = useAccount(wagmiConfig);
+    console.log("chainID", chainId)
+
+    useEffect(() => {
+        console.log("isOpen", chainModalOpen)
+        if(isConnected && chainId != ternoaChain.id && !chainModalOpen){
+            setTimeout(openChainModal, 0)
+        }        
+    }, [chainId, isConnected, openChainModal, chainModalOpen])
 
   
   
@@ -46,6 +62,7 @@ export default function App() {
 
             <NavBar onClick={(tabId) => setTabId(tabId)}/>
             { !isConnected ? <LoginTab/> : renderTab()}
+            <Toaster position="bottom-left"/>
             <Footer/>
         </>
   )

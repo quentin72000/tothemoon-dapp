@@ -1,8 +1,8 @@
 import AltitudeCounter from "../components/AltitudeCounter";
 import FuelSelector from "../components/FuelSelector";
 import Profile from "../components/Profile";
-import rocketImage from "../assets/rocket.png"
 import { useState } from "react";
+import UseFuelButton from "../components/UseFuelButton";
 
 
 
@@ -11,8 +11,8 @@ export default function RocketTab() {
 
   return (
     <div>
-      <AltitudeCounter/>
-      <img src={rocketImage} className="rocket" width="200px" />
+      <AltitudeCounter/> 
+      <UseFuelButton selectedFuelAmount={selectedFuelAmount}/>
       <Profile />
       <FuelSelector selected={selectedFuelAmount} setSelected={setSelectedFuelAmount}/>
     </div>

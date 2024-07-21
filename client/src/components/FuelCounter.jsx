@@ -10,7 +10,7 @@ export default function FuelCounter() {
     })
     
     if(isPending){
-        return "Loading..."
+        return <div>Loading...</div>
     }
     return (
         <p>You have {data.toString()/(10**18)} FUEL</p>

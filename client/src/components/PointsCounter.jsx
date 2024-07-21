@@ -11,7 +11,7 @@ export default function PointsCounter() {
     })
 
     if(isPending){
-        return "Loading..."
+        return <div>Loading...</div>
     }
     return (
         <p>You gained {data.toString()} points.</p>

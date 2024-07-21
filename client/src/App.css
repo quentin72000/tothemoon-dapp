@@ -27,10 +27,12 @@ body{
   cursor: pointer;
   filter: drop-shadow(0 0 0.5em #454748aa);
   transition: filter 300ms;
+  transition: transform 300ms ease-in-out;
 }
 
 .navbar > ul > li:hover {
   filter: drop-shadow(0 0 2em #bbbbbcaa);
+  transform: rotate(5deg);
 }
 
 .footer {
@@ -98,4 +100,25 @@ body{
   flex-grow: 1;
   text-align: center;
   margin: 0; /* Remove default margin for better alignment */
+}
+
+.rocket{
+  cursor: pointer;
+  transition-duration: 300ms;
+}
+
+.rocket:hover{
+  transform: scale(0.96);
+}
+
+.rocket:active:enabled{
+  transform: scale(0.90);
+}
+
+.rocket:disabled{
+  filter: grayscale(70%);
+}
+
+.selector{
+  border: none;
 }

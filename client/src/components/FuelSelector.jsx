@@ -5,17 +5,16 @@ export default function FuelSelector({selected, setSelected}) {
 
     return (
         <div>
-            <fieldset>
+            <fieldset className='selector'>
                 {
                     options.map((e) => {
                         return <div key={e}> 
-                            <label htmlFor={e}>{e}</label>
-                            <input type="radio" name="fuelselector" id={e} onClick={() => setSelected(e)} checked={e === selected} />
+                            <label htmlFor={e}>{e} FUEL</label>
+                            <input type="radio" name="fuelselector" id={e} onClick={() => setSelected(e)} defaultChecked={e === selected} />
                         </div>
                     })
                 }
             </fieldset>
-            <p>Select option : {selected} fuel.</p>
         </div>
     )
 }

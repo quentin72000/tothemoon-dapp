@@ -5,15 +5,16 @@ import { useEffect, useState } from "react"
 import { useChainModal } from "@rainbow-me/rainbowkit"
 import { useAccount, /*useAccountEffect*/ } from "wagmi"
 
-import NavBar from "./components/NavBar"
+import NavBar from "./components/layouts/NavBar"
 import RocketTab from "./tabs/RocketTab"
 import LoginTab from "./tabs/LoginTab"
-import Footer from "./components/Footer"
-import Header from "./components/Header"
+import Footer from "./components/layouts/Footer"
+import Header from "./components/layouts/Header"
 import { Toaster } from "react-hot-toast"
 
 import ternoaChain from "./datas/ternoaChain"
 import wagmiConfig from "./datas/wagmiConfig"
+import SwapTab from "./tabs/SwapTab"
 
 export default function App() {
     const [tabId, setTabId] = useState(2)
@@ -24,7 +25,7 @@ export default function App() {
     function renderTab(){
         switch (tabId) {
             case 1:
-                return <div>Swap : SOON</div>
+                return <SwapTab/>
             case 2:
                 return <RocketTab/>
             case 3:
@@ -63,6 +64,7 @@ export default function App() {
             <NavBar onClick={(tabId) => setTabId(tabId)}/>
             { !isConnected ? <LoginTab/> : renderTab()}
             <Toaster position="bottom-left"/>
+            
             <Footer/>
         </>
   )

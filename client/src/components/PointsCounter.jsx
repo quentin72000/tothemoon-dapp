@@ -1,20 +1,12 @@
-import { useAccount, useReadContract } from "wagmi"
-import { rocketContractConfig } from "../datas/contractConfig"
 
-import wagmiConfig from "../datas/wagmiConfig"
+import PropTypes from 'prop-types';
 
-export default function PointsCounter() {
-    const { address } = useAccount(wagmiConfig);
-    const { data, isPending } = useReadContract({
-        ...rocketContractConfig,
-        functionName: "points",
-        args: [address]
-    });
-
-    if(isPending){
-        return <div>Loading...</div>
-    }
+export default function PointsCounter({pointsData}) {
     return (
-        <p>You gained {data.toString()} points.</p>
+        <p>You gained {pointsData.result.toString()} points.</p>
   )
 }
+
+PointsCounter.propTypes = {
+    pointsData: PropTypes.object.isRequired
+};

@@ -2,15 +2,15 @@ import { useState, useEffect, useCallback } from "react";
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi"
 
 import { ethers } from "ethers";
-import wagmiConfig from "../datas/wagmiConfig"
-import { fuelTokenContractConfig, rocketContractConfig } from "../datas/contractConfig"
-import rocketImage from "../assets/rocket.png"
+import wagmiConfig from "../../datas/wagmiConfig";
+import { fuelTokenContractConfig, rocketContractConfig } from "../../datas/contractConfig"
+import rocketImage from "../../assets/rocket.png"
 import { toast } from "react-hot-toast"
 
 import PropTypes from 'prop-types';
 
 
-export default function UseFuelButton({ selectedFuelAmount }) {
+export default function UseFuelButton({ selectedFuelAmount, fuelQuantityData }) {
   const [isLoading, setIsLoading] = useState(false)
   const { address } = useAccount(wagmiConfig);
 
@@ -57,6 +57,12 @@ export default function UseFuelButton({ selectedFuelAmount }) {
   }, [isApproveSuccess, handleGiveFuel, refetchAllowance, isLoading, allowance]);
 
   const handleButtonClick = async () => {
+    if(fuelQuantityData === undefined) return;
+    if(fuelQuantityData.result < selectedFuelAmount){
+      toast.error('You do not have enough fuel!', {id: "fuel"});
+      return;
+    
+    }
     setIsLoading(true);
 
     if (allowance !== undefined && allowance < (ethers.parseUnits('1000', 18))) {
@@ -111,4 +117,5 @@ export default function UseFuelButton({ selectedFuelAmount }) {
 
 UseFuelButton.propTypes = {
   selectedFuelAmount: PropTypes.number.isRequired,
+  fuelQuantityData: PropTypes.object,
 };

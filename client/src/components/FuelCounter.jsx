@@ -1,20 +1,12 @@
-import { useAccount, useReadContract } from "wagmi"
-import { fuelTokenContractConfig } from "../datas/contractConfig"
+import { ethers } from "ethers"
+import PropTypes from "prop-types";
 
-import wagmiConfig from "../datas/wagmiConfig"
-
-export default function FuelCounter() {
-    const { address } = useAccount(wagmiConfig);
-    const { data, isPending } = useReadContract({
-        ...fuelTokenContractConfig,
-        functionName: "balanceOf",
-        args: [address]
-    })
-    
-    if(isPending){
-        return <div>Loading...</div>
-    }
-    return (
-        <p>You have {data.toString()/(10**18)} FUEL</p>
+export default function FuelCounter({ fuelQuantityData }) {
+  return (
+    <p>You have {ethers.formatUnits(fuelQuantityData.result, 18).split('.')[0]} FUEL</p>
   )
 }
+
+FuelCounter.propTypes = {
+  fuelQuantityData: PropTypes.object.isRequired,
+};

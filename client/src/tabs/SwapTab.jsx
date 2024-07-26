@@ -2,7 +2,6 @@
 import { useAccount, useReadContract } from "wagmi";
 import { useState } from "react";
 
-import TokenCounter from "../components/TokenCounter";
 import SwapForm from "../components/forms/SwapForm"
 
 import { tokenContractConfig } from "../datas/contractConfig";

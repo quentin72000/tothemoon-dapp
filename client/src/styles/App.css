@@ -6,7 +6,7 @@
 }
 
 body{
-  background-image: url("./assets/background.jpg");
+  background-image: url("../assets/background.jpg");
 }
 
 .navbar > ul {
@@ -33,6 +33,10 @@ body{
 .navbar > ul > li:hover {
   filter: drop-shadow(0 0 2em #bbbbbcaa);
   transform: rotate(5deg);
+}
+
+.navbar > ul > li:active {
+  transform: scale(0.93) rotate(5deg);
 }
 
 .footer {
@@ -108,7 +112,7 @@ body{
 }
 
 .rocket:hover{
-  transform: scale(0.96);
+  transform: scale(1.1);
 }
 
 .rocket:active:enabled{

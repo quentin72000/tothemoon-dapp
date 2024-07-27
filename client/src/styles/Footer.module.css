@@ -1,0 +1,10 @@
+.footer {
+    background-color: rgb(66, 66, 66);
+    margin: auto;
+    padding: auto;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    margin-top: 20px;
+    width: 250px;
+    border-radius: 5%;
+}

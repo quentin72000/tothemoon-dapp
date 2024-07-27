@@ -35,7 +35,7 @@ export default function RocketTab() {
       <AltitudeCounter/> 
       <UseFuelButton selectedFuelAmount={selectedFuelAmount} fuelQuantityData={fuelData}/>
       {isPending ? <div>Loading...</div> : <Profile fuelQuantityData={fuelData} pointsData={pointsData}/>}
-      <FuelSelector selected={selectedFuelAmount} setSelected={setSelectedFuelAmount}/>
+      <FuelSelector selected={selectedFuelAmount} setSelected={setSelectedFuelAmount} options={[1, 10, 100, 1000]}/>
     </div>
   );
 }

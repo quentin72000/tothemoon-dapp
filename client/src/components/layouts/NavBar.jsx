@@ -1,6 +1,8 @@
 
 import PropTypes from 'prop-types';
 
+import styles from "../../styles/NavBar.module.css";
+
 export default function NavBar({onClick}) {  
     const tabs = [{
         id: 1,
@@ -17,10 +19,10 @@ export default function NavBar({onClick}) {
   
   
     return (
-    <div className='navbar'>
+    <div className={styles.navbar}>
         <ul>
             {tabs.map((el) => {
-                return <li key={el.id} onClick={() => onClick(el.id)}>{el.name}</li>
+                return <li className={styles.link} key={el.id} onClick={() => onClick(el.id)}>{el.name}</li>
             })}
         </ul>
     </div>

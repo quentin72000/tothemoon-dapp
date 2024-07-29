@@ -1,0 +1,17 @@
+.rocket{
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+  
+.rocket:hover{
+    transform: scale(1.1);
+}
+  
+.rocket:active:enabled{
+    transform: scale(0.90);
+}
+  
+.rocket:disabled{
+    filter: grayscale(70%);
+}
+

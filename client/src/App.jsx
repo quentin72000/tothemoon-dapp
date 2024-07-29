@@ -17,7 +17,7 @@ import wagmiConfig from "./datas/wagmiConfig"
 import SwapTab from "./tabs/SwapTab"
 
 export default function App() {
-    const [tabId, setTabId] = useState(2)
+    const [tabId, setTabId] = useState(2) // Default tab is Rocket
 
 
     const { openChainModal, chainModalOpen } = useChainModal();

@@ -1,0 +1,23 @@
+.title{ 
+    margin: 0;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: 700;
+    flex-grow: 1;
+    text-align: center;
+}
+    
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100%; 
+    position: relative;
+    padding: 10px; 
+}
+  
+.connectButton {
+    display: block;
+    position: absolute;
+    right: 0px;
+}

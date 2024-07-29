@@ -1,0 +1,23 @@
+.container {
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    padding: auto;
+    background-color: #1a1a1a;
+    border-radius: 3%;
+  
+    display: flex;
+    justify-content: center; /* Optional: center horizontally */
+    align-items: center;
+}
+  
+  
+.text {
+    text-align: center; /* Optional: center text within the container */
+}
+  
+.connectButton{
+    display: inline-block;
+    text-align: center;
+    background-color: #1a1a1a;
+}

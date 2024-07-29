@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast"
 
 import PropTypes from 'prop-types';
 
+import styles from  "../../styles/UseFuelButton.module.css"
 
 export default function UseFuelButton({ selectedFuelAmount, fuelQuantityData }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -108,9 +109,9 @@ export default function UseFuelButton({ selectedFuelAmount, fuelQuantityData }) 
   }, [isApproveSuccess, isApproveLoading, isApproveError, isApprovePending, errorApprove]);
 
   return (
-    <div>
-      <input className="rocket" type="image" src={rocketImage} alt="" onClick={handleButtonClick} disabled={isLoading || isApproveLoading || isGiveFuelLoading} width="200px"/>
-      <p>{isLoading || isApproveLoading || isGiveFuelLoading ? 'Loading...' : 'Execute'}</p>
+    <div className="useFuel">
+      <input className={styles.rocket} type="image" src={rocketImage} alt="" onClick={handleButtonClick} disabled={isLoading || isApproveLoading || isGiveFuelLoading} width="200px"/>
+      {/* <p>{isLoading || isApproveLoading || isGiveFuelLoading ? 'Loading...' : '  '}</p> */}
     </div>
   )
 }

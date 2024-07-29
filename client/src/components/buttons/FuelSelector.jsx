@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
 
-export default function FuelSelector({selected, setSelected}) {
-    const options = [1, 10, 100]
+import styles from '../../styles/FuelSelector.module.css'
+
+export default function FuelSelector({selected, setSelected, options}) {
 
     return (
         <div>
-            <fieldset className='selector'>
+            <fieldset className={styles.selector}>
                 {
                     options.map((e) => {
-                        return <div key={e}> 
-                            <label htmlFor={e}>{e} FUEL</label>
-                            <input type="radio" name="fuelselector" id={e} onClick={() => setSelected(e)} defaultChecked={e === selected} />
-                        </div>
+                        return <label htmlFor={e} key={e} className={`${styles.defaultDiv} ${e === selected ? styles.selectedDiv : ""}`}> 
+                            {e} FUEL
+                            <input type="radio" className={styles.radioInput} name="fuelselector" id={e} onClick={() => setSelected(e)} defaultChecked={e === selected}></input>
+                        </label>
                     })
                 }
             </fieldset>
@@ -21,5 +22,6 @@ export default function FuelSelector({selected, setSelected}) {
 
 FuelSelector.propTypes = {
     selected: PropTypes.number.isRequired,
-    setSelected: PropTypes.func.isRequired
+    setSelected: PropTypes.func.isRequired,
+    options: PropTypes.array.isRequired
 };

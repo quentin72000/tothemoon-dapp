@@ -1,0 +1,29 @@
+.navbar > ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+  
+.link {
+    float: left;
+    display: block;
+    padding: 8px;
+    background-color: black;
+    border-radius: 25%;
+    margin: 10px;
+    font-size: xx-large;
+    cursor: pointer;
+    filter: drop-shadow(0 0 0.5em #454748aa);
+    transition: filter 300ms;
+    transition: transform 300ms ease-in-out;
+  }
+  
+.link:hover {
+    filter: drop-shadow(0 0 2em #bbbbbcaa);
+    transform: rotate(5deg);
+}
+  
+.link:active {
+    transform: scale(0.93) rotate(5deg);
+}

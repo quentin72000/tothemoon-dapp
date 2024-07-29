@@ -1,0 +1,27 @@
+.container {
+    background-color: #1a1a1a;
+    border-radius: 3%;
+    display: flex;
+    justify-content: center;
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Adapt border to content */
+    /* padding: 10px; */
+    
+}
+
+.input {
+    border: none;
+    background: transparent;
+    margin: 0;
+    width: 100%;
+
+}
+
+.inputDiv {
+    height: 100%;
+    position: relative;
+}
+
